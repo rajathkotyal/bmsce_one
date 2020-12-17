@@ -1,4 +1,4 @@
-package com.sem5.bmsce_one
+package com.example.bmsce_portal
 
 import io.flutter.embedding.android.FlutterActivity
 

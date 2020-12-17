@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'search.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class Settings extends StatelessWidget {
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MainApp()),
+              MaterialPageRoute(builder: (context) => Search()),
             ),
           ),
         ),

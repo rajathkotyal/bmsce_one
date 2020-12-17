@@ -1,7 +1,9 @@
-import 'package:bmsce_one/Settings.dart';
-import 'package:bmsce_one/griddashboard.dart';
+import 'package:bmsce_portal/hp/home_screen_main.dart';
+import 'package:bmsce_portal/Screens/Settings.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class ProfileScreen extends StatefulWidget {
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -121,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: Theme.of(context).primaryColor,
               child: Center(
                 child: Text(
-                  'CSE',
+                  'Res',
                   style: TextStyle(
                     fontSize: 23,
                     color: Colors.white,
@@ -129,6 +131,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               onPressed: () {},
+            ),
+          ),
+          SizedBox(
+            height: 25.0,
+          ),
+          Container(
+            width: 250.0,
+            child: FlatButton(
+              padding: EdgeInsets.all(10.0),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+              color: Colors.cyan,
+              child: Text(
+                'Logout',
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
             ),
           ),
           // Container(
@@ -184,7 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MainApp()),
+            MaterialPageRoute(builder: (context) => HomeScreenMain()),
           ),
         ),
         centerTitle: true,
