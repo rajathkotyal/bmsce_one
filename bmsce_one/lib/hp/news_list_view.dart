@@ -42,9 +42,9 @@ class _NewsListViewState extends State<NewsListView>
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               children: List<Widget>.generate(
-                Category.popularCourseList.length,
+                Category.newsList.length,
                 (int index) {
-                  final int count = Category.popularCourseList.length;
+                  final int count = Category.newsList.length;
                   final Animation<double> animation =
                       Tween<double>(begin: 0.0, end: 1.0).animate(
                     CurvedAnimation(
@@ -58,7 +58,7 @@ class _NewsListViewState extends State<NewsListView>
                     callback: () {
                       widget.callBack();
                     },
-                    category: Category.popularCourseList[index],
+                    category: Category.newsList[index],
                     animation: animation,
                     animationController: animationController,
                   );
@@ -122,7 +122,7 @@ class CategoryView extends StatelessWidget {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(16.0)),
                                 // border: new Border.all(
-                                //     color: DesignCourseAppTheme.notWhite),
+                                //     color: AppTheme.notWhite),
                               ),
                               child: Column(
                                 children: <Widget>[
@@ -140,7 +140,7 @@ class CategoryView extends StatelessWidget {
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 18,
                                                 letterSpacing: 0.27,
-                                                color: DesignCourseAppTheme
+                                                color: AppTheme
                                                     .darkerText,
                                               ),
                                             ),
@@ -165,7 +165,7 @@ class CategoryView extends StatelessWidget {
                                                     fontWeight: FontWeight.w200,
                                                     fontSize: 1,
                                                     letterSpacing: 0.27,
-                                                    color: DesignCourseAppTheme
+                                                    color: AppTheme
                                                         .nearlyBlue,
                                                   ),
                                                 ),
@@ -182,14 +182,14 @@ class CategoryView extends StatelessWidget {
                                                           fontSize: 13,
                                                           letterSpacing: 0.27,
                                                           color:
-                                                              DesignCourseAppTheme
+                                                              AppTheme
                                                                   .grey,
                                                         ),
                                                       ),
                                                       Icon(
                                                         Icons.person,
                                                         color:
-                                                            DesignCourseAppTheme
+                                                            AppTheme
                                                                 .nearlyBlue,
                                                         size: 20,
                                                       ),
@@ -226,7 +226,7 @@ class CategoryView extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(16.0)),
                             boxShadow: <BoxShadow>[
                               BoxShadow(
-                                  color: DesignCourseAppTheme.grey
+                                  color: AppTheme.grey
                                       .withOpacity(0.2),
                                   offset: const Offset(0.0, 0.0),
                                   blurRadius: 6.0),

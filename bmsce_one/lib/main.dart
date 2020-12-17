@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Screens/screens.dart';
 import 'package:bmsce_portal/hp/home_screen_main.dart';
-import 'dart:io';import 'package:flutter/services.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 
 void main() async {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        platform: TargetPlatform.iOS,
+        platform: TargetPlatform.android,
       ),
       home: HomeScreenMain(),
 

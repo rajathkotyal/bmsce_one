@@ -146,7 +146,7 @@ class CategoryView extends StatelessWidget {
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                                 letterSpacing: 0.27,
-                                                color: DesignCourseAppTheme
+                                                color: AppTheme
                                                     .darkerText,
                                               ),
                                             ),
@@ -171,7 +171,7 @@ class CategoryView extends StatelessWidget {
                                                     fontWeight: FontWeight.w200,
                                                     fontSize: 12,
                                                     letterSpacing: 0.27,
-                                                    color: DesignCourseAppTheme
+                                                    color: AppTheme
                                                         .grey,
                                                   ),
                                                 ),
@@ -188,14 +188,14 @@ class CategoryView extends StatelessWidget {
                                                           fontSize: 18,
                                                           letterSpacing: 0.27,
                                                           color:
-                                                              DesignCourseAppTheme
+                                                              AppTheme
                                                                   .grey,
                                                         ),
                                                       ),
                                                       Icon(
                                                         Icons.person,
                                                         color:
-                                                            DesignCourseAppTheme
+                                                            AppTheme
                                                                 .nearlyBlue,
                                                         size: 20,
                                                       ),
@@ -224,13 +224,13 @@ class CategoryView extends StatelessWidget {
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 15,
                                                     letterSpacing: 0.27,
-                                                    color: DesignCourseAppTheme
+                                                    color: AppTheme
                                                         .nearlyBlue,
                                                   ),
                                                 ),
                                                 Container(
                                                   decoration: BoxDecoration(
-                                                    color: DesignCourseAppTheme
+                                                    color: AppTheme
                                                         .nearlyBlue,
                                                     borderRadius:
                                                         const BorderRadius.all(
@@ -244,7 +244,7 @@ class CategoryView extends StatelessWidget {
                                                     child: Icon(
                                                       Icons.arrow_forward_rounded,
                                                       color:
-                                                          DesignCourseAppTheme
+                                                          AppTheme
                                                               .nearlyWhite,
                                                     ),
                                                   ),

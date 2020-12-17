@@ -3,9 +3,6 @@ import 'package:bmsce_portal/Screens/screens.dart';
 import 'package:bmsce_portal/hp/category_list_view.dart';
 import 'package:bmsce_portal/hp/course_info_screen.dart';
 import 'package:bmsce_portal/hp/news_list_view.dart';
-import 'package:bmsce_portal/hp/category_list_view.dart';
-import 'package:bmsce_portal/hp/course_info_screen.dart';
-import 'package:bmsce_portal/hp/news_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,12 +14,12 @@ class HomeScreenMain extends StatefulWidget {
 }
 
 class _HomeScreenMainState extends State<HomeScreenMain> {
-  CategoryType categoryType = CategoryType.ui;
+  //CategoryType categoryType = CategoryType.ui;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: DesignCourseAppTheme.nearlyWhite,
+      color: AppTheme.nearlyWhite,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
@@ -38,9 +35,9 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
                   child: Column(
                     children: <Widget>[
                       getSearchBarUI(),
-                      getCategoryUI(),
+                      getClasses(),
                       Flexible(
-                        child: getPopularCourseUI(),
+                        child: getNewsUI(),
                       ),
                     ],
                   ),
@@ -53,7 +50,7 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
     );
   }
 
-  Widget getCategoryUI() {
+  Widget getClasses() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,34 +64,11 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
               fontWeight: FontWeight.w600,
               fontSize: 22,
               letterSpacing: 0.27,
-              color: DesignCourseAppTheme.darkerText,
+              color: AppTheme.darkerText,
             ),
           ),
         ),
-        // const SizedBox(
-        //   height: 16,
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 16, right: 16),
-        //   child: Row(
-        //     children: <Widget>[
-        //       getButtonUI(CategoryType.ui, categoryType == CategoryType.ui),
-        //       const SizedBox(
-        //         width: 16,
-        //       ),
-        //       getButtonUI(
-        //           CategoryType.coding, categoryType == CategoryType.coding),
-        //       const SizedBox(
-        //         width: 16,
-        //       ),
-        //       getButtonUI(
-        //           CategoryType.basic, categoryType == CategoryType.basic),
-        //     ],
-        //   ),
-        // ),
-        // const SizedBox(
-        //   height: 16,
-        // ),
+
         CategoryListView(
           callBack: () {
             moveTo();
@@ -104,7 +78,7 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
     );
   }
 
-  Widget getPopularCourseUI() {
+  Widget getNewsUI() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
       child: Column(
@@ -118,7 +92,7 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
               fontWeight: FontWeight.w600,
               fontSize: 22,
               letterSpacing: 0.27,
-              color: DesignCourseAppTheme.darkerText,
+              color: AppTheme.darkerText,
             ),
           ),
           Flexible(
@@ -142,57 +116,51 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
     );
   }
 
-  Widget getButtonUI(CategoryType categoryTypeData, bool isSelected) {
-     String txt = '';
-    // if (CategoryType.ui == categoryTypeData) {
-    //   txt = 'Ui/Ux';
-    // } else if (CategoryType.coding == categoryTypeData) {
-    //   txt = 'Coding';
-    // } else if (CategoryType.basic == categoryTypeData) {
-    //   txt = 'Basic UI';
-    // }
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-            color: isSelected
-                ? DesignCourseAppTheme.nearlyBlue
-                : DesignCourseAppTheme.nearlyWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            border: Border.all(color: DesignCourseAppTheme.nearlyBlue)),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.white24,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            onTap: () {
-              setState(() {
-                categoryType = categoryTypeData;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 12, bottom: 12, left: 18, right: 18),
-              child: Center(
-                child: Text(
-                  txt,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                    letterSpacing: 0.27,
-                    color: isSelected
-                        ? DesignCourseAppTheme.nearlyWhite
-                        : DesignCourseAppTheme.nearlyBlue,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-
-    );
-  }
+  // Widget getButtonUI(CategoryType categoryTypeData, bool isSelected) {
+  //    String txt = '';
+  //
+  //   return Expanded(
+  //     child: Container(
+  //       decoration: BoxDecoration(
+  //           color: isSelected
+  //               ? AppTheme.nearlyBlue
+  //               : AppTheme.nearlyWhite,
+  //           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+  //           border: Border.all(color: AppTheme.nearlyBlue)),
+  //       child: Material(
+  //         color: Colors.transparent,
+  //         child: InkWell(
+  //           splashColor: Colors.white24,
+  //           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+  //           onTap: () {
+  //             setState(() {
+  //               categoryType = categoryTypeData;
+  //             });
+  //           },
+  //           child: Padding(
+  //             padding: const EdgeInsets.only(
+  //                 top: 12, bottom: 12, left: 18, right: 18),
+  //             child: Center(
+  //               child: Text(
+  //                 txt,
+  //                 textAlign: TextAlign.left,
+  //                 style: TextStyle(
+  //                   fontWeight: FontWeight.w600,
+  //                   fontSize: 12,
+  //                   letterSpacing: 0.27,
+  //                   color: isSelected
+  //                       ? AppTheme.nearlyWhite
+  //                       : AppTheme.nearlyBlue,
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //
+  //   );
+  // }
 
   Widget getSearchBarUI() {
     return Padding(
@@ -226,7 +194,7 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
                             fontFamily: 'WorkSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: DesignCourseAppTheme.nearlyBlue,
+                            color: AppTheme.nearlyBlue,
                           ),
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
@@ -287,17 +255,17 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
                     fontWeight: FontWeight.w400,
                     fontSize: 17,
                     letterSpacing: 0.2,
-                    color: DesignCourseAppTheme.grey,
+                    color: AppTheme.grey,
                   ),
                 ),
                 Text(
-                  'Rajath',
+                  'Rajath Kotyal',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
                     letterSpacing: 0.27,
-                    color: DesignCourseAppTheme.darkerText,
+                    color: AppTheme.darkerText,
                   ),
                 ),
               ],
@@ -322,11 +290,7 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
   }
 }
 
-enum CategoryType {
-  ui,
-  coding,
-  basic,
-}
+
 
 _launchURL() async {
   const url = 'https://meet.google.com';

@@ -38,7 +38,7 @@ class Category {
     ),
   ];
 
-  static List<Category> popularCourseList = <Category>[
+  static List<Category> newsList = <Category>[
     Category(
       imagePath: 'assets/interFace3.png',
       title: 'Offline Exams Cancelled',
