@@ -86,6 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _profInfo() {
     return Container(
+
       height: 210,
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 65),
@@ -94,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Center(
             child: Text(
-              '       Rajath\n 1BM18CS079',
+              '       Dwayne\n 1BM18CS001',
               style: TextStyle(fontSize: 25),
             ),
           ),
@@ -102,9 +103,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             height: 45,
             width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: 10),
+
             child: RaisedButton(
               color: Theme.of(context).primaryColor,
               child: Center(
+
                 child: Text(
                   '5B, B2 Batch',
                   style: TextStyle(
@@ -259,3 +263,4 @@ class HeaderCurvedContainer extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
+

@@ -1,3 +1,4 @@
+import 'package:bmsce_portal/hp/home_screen_main.dart';
 import 'package:flutter/material.dart';
 import 'search.dart';
 
@@ -10,7 +11,7 @@ class Settings extends StatelessWidget {
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Search()),
+              MaterialPageRoute(builder: (context) => HomeScreenMain()),
             ),
           ),
         ),
