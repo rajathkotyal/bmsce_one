@@ -1,4 +1,4 @@
-import 'package:bmsce_portal/Screens/Resources.dart';
+import 'package:bmsce_portal/Screens/resources/Resources.dart';
 import 'package:bmsce_portal/Screens/timetable.dart';
 import 'package:flutter/material.dart';
 import 'Screens/screens.dart';

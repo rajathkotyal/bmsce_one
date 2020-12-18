@@ -60,7 +60,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
               children: <Widget>[
                 AspectRatio(
                   aspectRatio: 1.2,
-                  child: Image.asset('assets/webInterFace.png'),
+                  child: Image.asset('assets/cn.png'),
                 ),
               ],
             ),
@@ -172,10 +172,11 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                             child: Padding(
                               padding: const EdgeInsets.all(8),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   getTimeBoxUI('24', 'Classes'),
                                   getTimeBoxUI('1 hour', 'Time'),
-                                  getTimeBoxUI('60', 'Class Strength'),
+                                  getTimeBoxUI('60', 'Strength'),
                                 ],
                               ),
                             ),
@@ -191,8 +192,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                   'Computer Networks Course\n5th Sem\nCSE Dept',
                                   textAlign: TextAlign.justify,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
                                     letterSpacing: 0.27,
                                     color: AppTheme.grey,
                                   ),
@@ -236,7 +237,52 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                   //   width: 16,
                                   // ),
                                   Expanded(
-                                    child: Container(
+                                    child: InkWell(
+                                      onTap: (){
+                                        _launchURL();
+                                      }
+                                      ,child: Container(
+                                      child: Center(child: Text("Google Meet",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 20,
+                                          letterSpacing: 0.27,
+                                          color: AppTheme.nearlyWhite,
+                                        ),
+                                      )),
+                                        height: 48,
+                                        decoration: BoxDecoration(
+                                          color: AppTheme.nearlyBlue,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(16.0),
+                                          ),
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                                color: AppTheme
+                                                    .nearlyBlue
+                                                    .withOpacity(0.5),
+                                                offset: const Offset(1.1, 1.1),
+                                                blurRadius: 10.0),
+                                          ],
+                                        ),
+                                        ),
+                                      ),
+                                    ),
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: (){
+                                        _launchURL1();
+                                      }
+                                      ,child: Container(
+                                      child: Center(child: Text("Classroom",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 20,
+                                          letterSpacing: 0.27,
+                                          color: AppTheme.nearlyWhite,
+                                        ),
+                                      )),
                                       height: 48,
                                       decoration: BoxDecoration(
                                         color: AppTheme.nearlyBlue,
@@ -252,25 +298,10 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                               blurRadius: 10.0),
                                         ],
                                       ),
-                                      child: Center(
-                                        child:FlatButton(
-                                          child: Text('Google Meet',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 19,
-                                              letterSpacing: 0.27,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          color: AppTheme
-                                              .nearlyBlue,
-                                          onPressed: () {
-                                            _launchURL();
-                                          },
-                                        ),
-                                      ),
                                     ),
-                                  )
+                                    ),
+                                  ),
+
                                 ],
                               ),
                             ),
@@ -398,7 +429,7 @@ showAlertDialog(BuildContext context) {
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Dr. KAVITHA SOODA S\n - Associate Professor"),
-    content: Text("Email : kavithas.cse@bmsce.ac.in"),
+    content: Text("Email : kavithas.cse@bmsce.ac.in\nPhone : +91 9876543210"),
     actions: [
       okButton,
     ],
@@ -415,6 +446,15 @@ showAlertDialog(BuildContext context) {
 
 _launchURL() async {
   const url = 'https://meet.google.com';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+_launchURL1() async {
+  const url = 'https://classroom.google.com';
   if (await canLaunch(url)) {
     await launch(url);
   } else {

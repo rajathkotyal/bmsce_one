@@ -1,9 +1,10 @@
 import 'package:bmsce_portal/Screens/aboutUs.dart';
+import 'package:bmsce_portal/Screens/resources/websyl.dart';
 import 'package:bmsce_portal/Screens/screens.dart';
 import 'package:bmsce_portal/Screens/timetable.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:bmsce_portal/Screens/Resources.dart';
+import 'package:bmsce_portal/Screens/resources/Resources.dart';
 import 'package:bmsce_portal/hp/app_theme.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,7 +14,8 @@ class ProfilePage extends StatefulWidget {
 var action = [
   Resources(),
   TimeTable(),
-  Settings(),
+  WebSyllabus(),
+  Results(),
   AboutUs()
 ];
 
@@ -25,7 +27,8 @@ class _ProfilePageState extends State<ProfilePage> {
   var _buttonList = [
     'Resources',
     'Time Table',
-    'Settings',
+    'Syllabus',
+    'Results',
     'About Us',
   ];
 
@@ -205,7 +208,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: OutlineButton(
               onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>   Resources(),
+                  MaterialPageRoute(builder: (context) =>   TimeTable(),
                   )),
               borderSide: BorderSide(color: Colors.blue),
               splashColor: Colors.greenAccent,
@@ -243,7 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     'Profile',
                     style: TextStyle(
                       fontFamily: 'MD',
-                      fontSize: 28,
+                      fontSize: 26,
 
                       //fontWeight: FontWeight.w700,
                     ),

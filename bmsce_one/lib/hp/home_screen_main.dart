@@ -4,7 +4,6 @@ import 'package:bmsce_portal/Screens/screens.dart';
 import 'package:bmsce_portal/hp/category_list_view.dart';
 import 'package:bmsce_portal/hp/course_info_screen.dart';
 import 'package:bmsce_portal/hp/news_list_view.dart';
-import 'package:bmsce_portal/profile/profileMain.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';

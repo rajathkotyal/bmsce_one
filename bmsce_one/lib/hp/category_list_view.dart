@@ -222,7 +222,7 @@ class CategoryView extends StatelessWidget {
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: 15,
+                                                    fontSize: 12,
                                                     letterSpacing: 0.27,
                                                     color: AppTheme
                                                         .nearlyBlue,
@@ -235,12 +235,12 @@ class CategoryView extends StatelessWidget {
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                             Radius.circular(
-                                                                8.0)),
+                                                                5.0)),
                                                   ),
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            4.0),
+                                                            2.0),
                                                     child: Icon(
                                                       Icons.arrow_forward_rounded,
                                                       color:

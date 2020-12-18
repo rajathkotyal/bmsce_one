@@ -1,8 +1,11 @@
+import 'package:bmsce_portal/Screens/resources/webFac.dart';
+import 'package:bmsce_portal/Screens/resources/webNews.dart';
 import 'package:bmsce_portal/hp/app_theme.dart';
 import 'package:bmsce_portal/hp/models/category.dart';
 import 'package:bmsce_portal/main.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsListView extends StatefulWidget {
   const NewsListView({Key key, this.callBack}) : super(key: key);
@@ -105,7 +108,7 @@ class CategoryView extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.transparent,
               onTap: () {
-                _launchURL();
+               _launchURL();
               },
               child: SizedBox(
                 height: 280,

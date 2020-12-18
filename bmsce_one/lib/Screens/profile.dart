@@ -1,5 +1,5 @@
 import 'package:bmsce_portal/hp/home_screen_main.dart';
-import 'package:bmsce_portal/Screens/Settings.dart';
+import 'package:bmsce_portal/Screens/results.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

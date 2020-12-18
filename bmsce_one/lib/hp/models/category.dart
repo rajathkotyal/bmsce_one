@@ -21,12 +21,12 @@ class Category {
     Category(
       imagePath: 'assets/unix.png',
       title: 'Unix System\nProgramming',
-      classCount: 22,
+      classCount: 20,
       faculty: 'SAN',
     ),
     Category(
       imagePath: 'assets/interFace1.png',
-      title: 'AA',
+      title: 'Adv Algorithms',
       classCount: 24,
       faculty: "GRP",
     ),
