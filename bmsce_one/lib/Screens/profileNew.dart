@@ -2,6 +2,7 @@ import 'package:bmsce_portal/Screens/aboutUs.dart';
 import 'package:bmsce_portal/Screens/resources/websyl.dart';
 import 'package:bmsce_portal/Screens/screens.dart';
 import 'package:bmsce_portal/Screens/timetable.dart';
+import 'package:bmsce_portal/main.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:bmsce_portal/Screens/resources/Resources.dart';
@@ -158,6 +159,11 @@ class _ProfilePageState extends State<ProfilePage> {
           OutlineButton(
             onPressed: () async {
               await _auth.signOut();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ));
             },
             borderSide: BorderSide(color: Colors.blue),
             splashColor: Colors.greenAccent,
