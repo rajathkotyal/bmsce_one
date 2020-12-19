@@ -6,19 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:bmsce_portal/Screens/resources/Resources.dart';
 import 'package:bmsce_portal/hp/app_theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
-var action = [
-  Resources(),
-  TimeTable(),
-  WebSyllabus(),
-  Results(),
-  AboutUs()
-];
 
+var action = [Resources(), TimeTable(), WebSyllabus(), Results(), AboutUs()];
 
 class _ProfilePageState extends State<ProfilePage> {
   bool _isOpen = false;
@@ -106,7 +103,6 @@ class _ProfilePageState extends State<ProfilePage> {
   SingleChildScrollView _panelBody(ScrollController controller) {
     double hPadding = 40;
 
-
     return SingleChildScrollView(
       controller: controller,
       physics: ClampingScrollPhysics(),
@@ -126,46 +122,47 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           ListView.builder(
-              primary: false,
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(vertical: 0,horizontal: 100),
-              itemCount: _buttonList.length,
-              // listDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //   crossAxisCount: 3,
-              //   mainAxisSpacing: 16,
-              // ),
+            primary: false,
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 100),
+            itemCount: _buttonList.length,
+            // listDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //   crossAxisCount: 3,
+            //   mainAxisSpacing: 16,
+            // ),
 
-              itemBuilder: (BuildContext context, int index) => RaisedButton(
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => action[index])),
-                //borderSide: BorderSide(color: Colors.blue),
-                color: AppTheme.nearlyBlue,
-                elevation: 4,
-                animationDuration: Duration(milliseconds: 10),
-                highlightElevation: 20,
-                splashColor: Colors.greenAccent,
-                shape: StadiumBorder(
-                ),
-                child: Text(
-                  _buttonList[index],
-                  style: TextStyle(
-                    fontFamily: 'NimbusSanL',
-                    fontSize: 18,
-                    //fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
+            itemBuilder: (BuildContext context, int index) => RaisedButton(
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => action[index])),
+              //borderSide: BorderSide(color: Colors.blue),
+              color: AppTheme.nearlyBlue,
+              elevation: 4,
+              animationDuration: Duration(milliseconds: 10),
+              highlightElevation: 20,
+              splashColor: Colors.greenAccent,
+              shape: StadiumBorder(),
+              child: Text(
+                _buttonList[index],
+                style: TextStyle(
+                  fontFamily: 'NimbusSanL',
+                  fontSize: 18,
+                  //fontWeight: FontWeight.w700,
+                  color: Colors.white,
                 ),
               ),
-
             ),
-          SizedBox(height: 20,),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           OutlineButton(
-            onPressed: () => print("Logout"),
+            onPressed: () async {
+              await _auth.signOut();
+            },
             borderSide: BorderSide(color: Colors.blue),
             splashColor: Colors.greenAccent,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Text(
               'Log Out',
               style: TextStyle(
@@ -175,7 +172,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-
 
           // GridView.builder(
           //   primary: false,
@@ -191,7 +187,6 @@ class _ProfilePageState extends State<ProfilePage> {
           //     onPressed: (){print("settings");},
           //   )
           // )
-
         ],
       ),
     );
@@ -208,7 +203,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: OutlineButton(
               onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>   TimeTable(),
+                  MaterialPageRoute(
+                    builder: (context) => TimeTable(),
                   )),
               borderSide: BorderSide(color: Colors.blue),
               splashColor: Colors.greenAccent,
@@ -234,26 +230,25 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(height: 30),
         Visibility(
           visible: _isOpen,
-
           child: Expanded(
             child: Container(
               alignment: Alignment.center,
               child: SizedBox(
                 width: _isOpen
-                    ? (MediaQuery.of(context).size.width - (2 * hPadding)) /4
+                    ? (MediaQuery.of(context).size.width - (2 * hPadding)) / 4
                     : double.infinity,
                 child: Text(
-                    'Profile',
-                    style: TextStyle(
-                      fontFamily: 'MD',
-                      fontSize: 26,
+                  'Profile',
+                  style: TextStyle(
+                    fontFamily: 'MD',
+                    fontSize: 26,
 
-                      //fontWeight: FontWeight.w700,
-                    ),
+                    //fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
             ),
+          ),
         ),
         Visibility(
           visible: !_isOpen,
@@ -264,27 +259,25 @@ class _ProfilePageState extends State<ProfilePage> {
               //   width: _isOpen
               //       ? (MediaQuery.of(context).size.width - (2 * hPadding)) / 1.6
               //       : double.infinity,
-                child: FlatButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>   Resources())),
-                  color: AppTheme.nearlyBlue,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Text(
-                    'Resources',
-                    style: TextStyle(
-                      fontFamily: 'NimbusSanL',
-                      fontSize: 18,
-                      //fontWeight: FontWeight.w700,
-                    ),
+              child: FlatButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Resources())),
+                color: AppTheme.nearlyBlue,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                child: Text(
+                  'Resources',
+                  style: TextStyle(
+                    fontFamily: 'NimbusSanL',
+                    fontSize: 18,
+                    //fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
             ),
+          ),
         ),
-
       ],
     );
   }
