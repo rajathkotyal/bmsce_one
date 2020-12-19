@@ -1,105 +1,230 @@
+import 'package:bmsce_portal/Screens/resources/Resources.dart';
+import 'package:bmsce_portal/Screens/timetable.dart';
 import 'package:flutter/material.dart';
+import 'Screens/screens.dart';
+import 'package:bmsce_portal/hp/home_screen_main.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+import 'hp/home_screen_main.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+User user;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
+  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]).then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness:
+          Platform.isAndroid ? Brightness.dark : Brightness.light,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarDividerColor: Colors.grey,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+        title: 'BMSCE_ONE',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          platform: TargetPlatform.android,
+        ),
+        home: StreamBuilder<User>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+            if (snapshot.hasData) {
+              print("data exists");
 
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+              return HomeScreenMain();
+            } else {
+              return LoginPage();
+            }
+          },
+        ));
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class LoginPage extends StatefulWidget {
+  static final String id = 'LoginPage';
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Color(0xFFF7F7F7),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Container(
+              padding: const EdgeInsets.only(top: 30, bottom: 30),
+              // height: 350,
+
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular((52)),
+                      bottomRight: Radius.circular(52)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFF000000),
+                        blurRadius: 5,
+                        spreadRadius: 0.5)
+                  ]),
+              child: Column(children: <Widget>[
+                Image(
+                  image: AssetImage('assets/BMS.png'),
+                  height: 200,
+                  width: 200,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Text(
+                    "BMSCE ONE",
+                    style: TextStyle(
+                      fontSize: 45,
+                    ),
+                  ),
+                ),
+                Text(
+                  "Sign in to access your college details",
+                  style: TextStyle(fontSize: 15),
+                )
+              ]),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      child: TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(labelText: 'Email'),
+                        validator: (input) => !input.contains('@')
+                            ? 'Please enter a valid email'
+                            : null,
+                        //onSaved: (input) => _email = input,
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(labelText: 'Password'),
+                        validator: (input) => input.length < 6
+                            ? 'Must be at least 6 characters'
+                            : null,
+                        //onSaved: (input) => _pass = input,
+                        obscureText: true,
+                      )),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    width: 250.0,
+                    child: FlatButton(
+                      padding: EdgeInsets.all(8.0),
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          _signInWithEmailAndPassword();
+                        }
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(52))),
+                      width: 150.0,
+                      child: FlatButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, SignUpPage.id),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(color: Colors.black, fontSize: 20.0),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _signInWithEmailAndPassword() async {
+    try {
+      user = (await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ))
+          .user;
+
+      // Scaffold.of(context).showSnackBar(SnackBar(
+      //   content: Text("${user.email} signed in"),
+      // ));
+    } on FirebaseAuthException catch (e) {
+      print('Failed with error code: ${e.code}');
+      print(e.message);
+    }
+  }
+}
+
+class HexColor extends Color {
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF' + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
   }
 }

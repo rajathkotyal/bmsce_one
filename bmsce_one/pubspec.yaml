@@ -1,5 +1,5 @@
-name: bmsce_one
-description: A new Flutter application.
+name: bmsce_portal
+description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,11 +23,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_fonts: ^1.1.1
+  persistent_bottom_nav_bar: ^2.1.0
+  firebase_core: ^0.5.2
+  firebase_auth: "^0.18.3"
+  font_awesome_flutter: ^8.7.0
+  intl: ^0.16.1
+  color_utils: ^0.0.1
+  bottom_navy_bar: ^5.6.0
+  hexcolor: any
+  url_launcher: any
+  sliding_up_panel: ^1.0.0
+  line_awesome_flutter: ^1.0.1
+  flutter_screenutil: ^1.0.2
+  animated_theme_switcher: ^1.0.5
+  flutter_plugin_pdf_viewer: any
+  transparent_image: any
+  photo_view: ^0.10.3
+  webview_flutter: any
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^0.1.3
 
 dev_dependencies:
   flutter_test:
@@ -45,9 +64,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -60,17 +78,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+   - family: Ls
+     fonts:
+       - asset: fonts/ls.otf
+   - family: MB
+     fonts:
+       - asset: fonts/MB.ttf
+
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
