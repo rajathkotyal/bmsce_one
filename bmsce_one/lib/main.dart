@@ -17,10 +17,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
-  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((_) => runApp(MyApp()));
+  // await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown
+  // ]).then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -174,8 +174,11 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.all(Radius.circular(52))),
                       width: 150.0,
                       child: FlatButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, SignUpPage.id),
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpPage(),
+                            )),
                         child: Text(
                           'Sign Up',
                           style: TextStyle(color: Colors.black, fontSize: 20.0),
