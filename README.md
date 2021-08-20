@@ -1,7 +1,7 @@
 # bmsce_one
 
 
-###Cross Platform Mobile InfoApp for our college - BMSCE
+#### Cross Platform Mobile InfoApp for our college - BMSCE
 
 ## Team :
 <br>
