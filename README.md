@@ -1,5 +1,8 @@
 # bmsce_one
 
+
+###Cross Platform Mobile InfoApp for our college - BMSCE
+
 ## Team :
 <br>
 Rajath Kotyal - 1BM18CS079
